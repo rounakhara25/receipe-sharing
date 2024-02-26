@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Sharing Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgb(16, 194, 194);
+        }
+
+        #recipe-form {
+            width: 400px;
+            background-color:rgb(220, 159, 106);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #recipe-list {
+            width: 400px;
+            background-color:palevioletred;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="recipe-form">
+        <h2>Add a New Recipe</h2>
+        <label for="recipe-name">Recipe Name:</label>
+        <input type="text" id="recipe-name" placeholder="Enter the recipe name">
+
+        <label for="recipe-description">Description:</label>
+        <textarea id="recipe-description" placeholder="Enter a brief description"></textarea>
+
+        <button onclick="addRecipe()">Add Recipe</button>
+    </div>
+
+    <div id="recipe-list">
+        <h2>Shared Recipes</h2>
+        <div id="recipes-container"></div>
+    </div>
+
+    <script>
+        function addRecipe() {
+            var recipeName = document.getElementById('recipe-name').value;
+            var recipeDescription = document.getElementById('recipe-description').value;
+
+            if (recipeName.trim() === '' || recipeDescription.trim() === '') {
+                alert('Please fill in both the recipe name and description.');
+                return;
+            }
+
+            var recipesContainer = document.getElementById('recipes-container');
+            var newRecipe = document.createElement('div');
+            newRecipe.className = 'recipe-item';
+            newRecipe.innerHTML = '<h3>' + recipeName + '</h3><p>' + recipeDescription + '</p>';
+            recipesContainer.appendChild(newRecipe);
+
+            // Clear the input fields
+            document.getElementById('recipe-name').value = '';
+            document.getElementById('recipe-description').value = '';
+        }
+    </script>
+</body>
+</html>
